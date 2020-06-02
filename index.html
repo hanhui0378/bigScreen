@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/index.css">
+  <title>screen</title>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="left-a">
+        <div class="main-title">
+          设备检查量
+        </div>
+        <div class="l-a-nr">
+          <div class="l-a-item df-sb">
+            <div class="l-a-item-left">
+              <div class="sub-title">检查量(月)</div>
+              <div id="chartA1">1</div>
+            </div>
+            <div class="l-a-item-right">
+              <div class="sub-title">每月检查量趋势图</div>
+              <div id="chartA2">2</div>
+            </div>
+          </div>
+          <div class="l-a-item mt-5 df-sb">
+            <div class="l-a-item-left">
+              <div class="sub-title">待机时间(月)</div>
+              <div id="chartA3">3</div>
+            </div>
+            <div class="l-a-item-right">
+              <div class="sub-title">每月待机时间趋势图</div>
+              <div id="chartA4">4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="left-b mt-5">
+        <!-- <div class="main-title">
+          区域设备总量
+        </div>
+        <div class="l-b-nr">
+          <div class="l-b-item df-sb">
+            <div class="l-b-item-left">
+              <div class="sub-title">区域分布</div>
+              <div id="chartB1">
+                <table>
+                  <thead>
+                    <tr>
+                      <td>区域</td>
+                      <td>设备数量</td>
+                      <td>人口</td>
+                      <td>人均比</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="l-b-item-right">
+              <div class="sub-title">分布趋势图</div>
+              <div id="chartB2">2</div>
+            </div>
+          </div>
+        </div> -->
+        <div class="main-title">
+          区域设备总量
+        </div>
+        <div class="l-b-nr">
+          <div id="chartB2"></div>
+        </div>
+      </div>
+      <div class="left-c  mt-5">
+        <div class="main-title">
+          全省设备运行指数
+        </div>
+        <div class="l-c-nr">
+          <div class="l-c-item df-sb">
+            <div class="l-c-item-left">
+              <div class="sub-title">超负荷运行指数TOP10</div>
+              <div id="chartC1">1</div>
+            </div>
+            <div class="l-c-item-right">
+              <div class="sub-title">低负荷运行指数TOP10</div>
+              <div id="chartC2">2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="b-title">
+        智慧医疗设备监控中心
+      </div>
+      <div class="mid-a">
+        <div id="map">1</div>
+      </div>
+      <div class="mid-b">
+        <div class="main-title">
+          全省大型设备总量 <span class="eqCount">-</span> 台 设备总值 <span class="eqOriginalValue">-</span> 万元 分布于16个市区
+        </div>
+        <div class="m-b-nr">
+          <div class="m-b-item df-sb">
+            <div class="m-b-item-q">
+              <div class="sub-title">甲类 <span class="aCount">-</span></div>
+              <div id="chartMB1">1</div>
+            </div>
+            <div class="m-b-item-q">
+              <div class="sub-title">乙类 <span class="bCount">-</span></div>
+              <div id="chartMB2">2</div>
+            </div>
+            <div class="m-b-item-q">
+              <div class="sub-title">甲乙类 <span class="abCount">-</span></div>
+              <div id="chartMB3">3</div>
+            </div>
+            <div class="m-b-item-q">
+              <div class="sub-title">全省人占比 <span class="proportion">-</span></div>
+              <div id="chartMB4">4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mid-c">
+        <div class="main-title">
+          设备监控
+        </div>
+        <div class="m-c-nr">
+          <div class="m-c-item df-sb">
+            <div class="m-c-item-l">
+              <div class="sub-title">甲类设备</div>
+              <div id="chartMC1">
+                <div><span>D1</span></div>
+                <div><span>D2</span></div>
+                <div><span>D3</span></div>
+                <div><span>D4</span></div>
+                <div><span>D5</span></div>
+                <div><span>D6</span></div>
+                <div><span>D7</span></div>
+                <div><span>D8</span></div>
+              </div>
+            </div>
+            <div class="m-c-item-r">
+              <div class="sub-title">数量</div>
+              <div id="chartMC2">
+                <!-- <p>总数量:200</p>
+                <p>开机数量:300</p>
+                <p>待机数量:400</p>
+                <p>离线数量:500</p> -->
+                <table>
+                  <tr>
+                    <td class="ta-r">总数量</td>
+                    <td class="ta-l">200</td>
+                  </tr>
+                  <tr>
+                    <td class="ta-r">开机数量</td>
+                    <td class="ta-l">300</td>
+                  </tr>
+                  <tr>
+                    <td class="ta-r">待机数量</td>
+                    <td class="ta-l">400</td>
+                  </tr>
+                  <tr>
+                    <td class="ta-r">离线数量</td>
+                    <td class="ta-l">500</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="m-c-item-l">
+              <div class="sub-title">乙类设备</div>
+              <div id="chartMC3">
+                <div><span>C1</span></div>
+                <div><span>C2</span></div>
+                <div><span>C3</span></div>
+                <div><span>C4</span></div>
+                <div><span>C5</span></div>
+                <div><span>C6</span></div>
+                <div><span>C7</span></div>
+                <div><span>C8</span></div>
+              </div>
+            </div>
+            <div class="m-c-item-r">
+              <div class="sub-title">数量</div>
+              <div id="chartMC4">
+                <table>
+                  <tr>
+                    <td class="ta-r">总数量</td>
+                    <td class="ta-l">200</td>
+                  </tr>
+                  <tr>
+                    <td class="ta-r">开机数量</td>
+                    <td class="ta-l">300</td>
+                  </tr>
+                  <tr>
+                    <td class="ta-r">待机数量</td>
+                    <td class="ta-l">400</td>
+                  </tr>
+                  <tr>
+                    <td class="ta-r">离线数量</td>
+                    <td class="ta-l">500</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mid-d">
+        <div class="main-title">
+          当日设备运行数量趋势图
+        </div>
+        <div class="m-d-nr">
+          <div id="chartMD1"></div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="right-a">
+        <div class="main-title">
+          医疗机构概况
+        </div>
+        <div class="r-a-nr">
+          <div class="r-a-item df-sb">
+            <div class="r-a-item-left">
+              <div class="sub-title">机构比</div>
+              <div id="chartRA1">1</div>
+            </div>
+            <div class="r-a-item-right">
+              <div class="sub-title">机构数量</div>
+              <div id="chartRA2">2</div>
+            </div>
+          </div>
+          <div class="r-a-item df-sb mt-5">
+            <div class="r-a-item-all">
+              <div class="sub-title">山东省各市区在线监督医院数量分布</div>
+              <div id="chartRA3">2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-b mt-5">
+        <div class="main-title">
+          消息提醒
+        </div>
+        <div class="r-b-nr">
+          <div class="r-b-item df-sb">
+            <div class="r-b-item-all">
+              <div class="sub-title">供应商、维修商消息提醒</div>
+              <div id="chartRB1">
+                <table>
+                  <thead>
+                    <tr>
+                      <td>名称</td>
+                      <td>消息内容</td>
+                      <td>发布时间</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>西门子公司</td>
+                      <td>公司证件将近到期请联系负责人</td>
+                      <td>2020-03-13 13:00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-c">
+        <div class="main-title">
+          设备效率
+        </div>
+        <div class="r-c-nr">
+          <div class="r-c-item df-sb">
+            <div class="r-c-item-left">
+              <div class="sub-title">科研工作量预测符合率</div>
+              <div id="chartRC1">1</div>
+            </div>
+            <div class="r-c-item-right">
+              <div class="sub-title">开机率</div>
+              <div id="chartRC2">2</div>
+            </div>
+          </div>
+          <div class="r-c-item df-sb mt-5">
+            <div class="r-c-item-left">
+              <div class="sub-title">机时利用率</div>
+              <div id="chartRC3">1</div>
+            </div>
+            <div class="r-c-item-right">
+              <div class="sub-title">工作量预测符合率</div>
+              <div id="chartRC4">2</div>
+            </div>
+          </div>
+          <div class="r-c-item df-sb mt-5">
+            <div class="r-c-item-left-bm">
+              <div class="sub-title">完好率</div>
+              <div id="chartRC5">1</div>
+              <!-- <div class="label">80%</div> -->
+            </div>
+            <div class="r-c-item-right-bm">
+              <div class="sub-title">检查阳性率</div>
+              <div id="chartRC6">2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mask" id="mask">
+    <div class="box">
+      <p>
+        请点击下方按钮进入全屏
+      </p>
+      <div class="button" id="fullScreen">全屏</div>
+    </div>
+  </div>
+
+  <img src="./images/bg.png" id="bg_img" style="display:none" />
+  <img src="./images/round1.png" id="round1" style="display:none" />
+
+  <script src="./js/jquery-1.8.2.min.js"></script>
+  <script src="./js/echarts.min.js"></script>
+  <script src="./js/china.js"></script>
+  <script src="./js/shandong.js"></script>
+  <script src="./js/shandong_geo.js"></script>
+  <script src="./js/axios.min.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+</html>
