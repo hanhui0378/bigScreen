@@ -18,6 +18,19 @@ var chartMB1 = echarts.init(document.getElementById('chartMB1'));
 var chartMB2 = echarts.init(document.getElementById('chartMB2'));
 var chartMB3 = echarts.init(document.getElementById('chartMB3'));
 var chartMB4 = echarts.init(document.getElementById('chartMB4'));
+var chartMD1 = echarts.init(document.getElementById('chartMD1'));
+
+var chartRA1 = echarts.init(document.getElementById('chartRA1'));
+var chartRA2 = echarts.init(document.getElementById('chartRA2'));
+var chartRA3 = echarts.init(document.getElementById('chartRA3'));
+var chartMC1 = echarts.init(document.getElementById('chartMC1'));
+var chartMC3 = echarts.init(document.getElementById('chartMC3'));
+var chartRC1 = echarts.init(document.getElementById('chartRC1'));
+var chartRC2 = echarts.init(document.getElementById('chartRC2'));
+var chartRC3 = echarts.init(document.getElementById('chartRC3'));
+var chartRC4 = echarts.init(document.getElementById('chartRC4'));
+var chartRC5 = echarts.init(document.getElementById('chartRC5'));
+var chartRC6 = echarts.init(document.getElementById('chartRC6'));
 
 function fetchData() {
   axios({
@@ -410,8 +423,8 @@ function fetchData() {
     })
   
   // L  C
-    var LC1 = data.eqOperationIndexVo.overload
-    var LC2 = data.eqOperationIndexVo.lowload
+    var LC1 = data.eqOperationIndexVo.lowload
+    var LC2 = data.eqOperationIndexVo.overload
     var LC1_data = LC1.map(item => item.count)
     var LC1_xData = LC1.map(item => item.name)
     var LC2_data = LC2.map(item => item.count)
@@ -669,6 +682,824 @@ function fetchData() {
         }
       ]
     })
+
+    var MC1 = data.eqMonitorVo.aEqMonitor
+    var MC2 = data.eqMonitorVo.aAllEqMonitor
+    var MC3 = data.eqMonitorVo.bEqMonitor
+    var MC4 = data.eqMonitorVo.bAllEqMonitor
+
+    var MC1_xData = MC1.map(item => item.name)
+    var MC1_data = { bootCount: [], offlineCount: [], standbyCount: [] }
+    MC1_data.bootCount = MC1.map(item => item.bootCount)
+    MC1_data.offlineCount = MC1.map(item => item.offlineCount)
+    MC1_data.standbyCount = MC1.map(item => item.standbyCount)    
+    // MC1_data.bootCount = [1,2,3,4]
+    // MC1_data.offlineCount = [1,2,3,4]
+    // MC1_data.standbyCount = [1,2,3,4]
+
+    var MC3_xData = MC3.map(item => item.name)
+    var MC3_data = { bootCount: [], offlineCount: [], standbyCount: [] }
+    MC3_data.bootCount = MC3.map(item => item.bootCount)
+    MC3_data.offlineCount = MC3.map(item => item.offlineCount)
+    MC3_data.standbyCount = MC3.map(item => item.standbyCount)
+
+    chartMC1.setOption({
+      xAxis: {
+        type: 'category',
+        data: MC1_xData,
+        axisLine:{
+          show:false,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          inside: false,
+          interval: 0
+        } 
+      },
+      yAxis: {
+        type: 'value',
+        interval: 20,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+      },
+      grid: {
+        x:40,  //左留白
+        y:20,   //上留白
+        x2:20,  //右留白
+        y2:25   //下留白
+      },
+      series: [
+        {
+          data: MC1_data.bootCount,
+          type: 'bar',
+          color: redStr,
+          barWidth: '20',
+          stack: '总量',
+          label: {
+              show: true,
+              position: 'insideTop',
+              formatter: function (params) {
+                if (params.value) {
+                  return params.value
+                } else {
+                  return ''
+                }
+              }
+          },
+        },
+        {
+          data: MC1_data.offlineCount,
+          type: 'bar',
+          color: blueStr,
+          barWidth: '20',
+          stack: '总量',
+          label: {
+              show: true,
+              position: 'insideTop',
+              formatter: function (params) {
+                if (params.value) {
+                  return params.value
+                } else {
+                  return ''
+                }
+              }
+          },
+        },
+        {
+          data: MC1_data.standbyCount,
+          type: 'bar',
+          color: greenStr,
+          barWidth: '20',
+          stack: '总量',
+          label: {
+              show: true,
+              position: 'insideTop',
+              formatter: function (params) {
+                if (params.value) {
+                  return params.value
+                } else {
+                  return ''
+                }
+              }
+          },
+        }
+      ]
+    })
+    chartMC3.setOption({
+      xAxis: {
+        type: 'category',
+        data: MC3_xData,
+        axisLine:{
+          show:false,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          inside: false,
+          interval: 0
+        } 
+      },
+      yAxis: {
+        type: 'value',
+        interval: 20,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+      },
+      grid: {
+        x:40,  //左留白
+        y:20,   //上留白
+        x2:20,  //右留白
+        y2:25   //下留白
+      },
+      series: [
+        {
+          data: MC3_data.bootCount,
+          type: 'bar',
+          color: redStr,
+          barWidth: '20',
+          stack: '总量',
+          label: {
+              show: true,
+              position: 'insideTop',
+              formatter: function (params) {
+                if (params.value) {
+                  return params.value
+                } else {
+                  return ''
+                }
+              }
+          },
+        },
+        {
+          data: MC3_data.offlineCount,
+          type: 'bar',
+          color: blueStr,
+          barWidth: '20',
+          stack: '总量',
+          label: {
+              show: true,
+              position: 'insideTop',
+              formatter: function (params) {
+                if (params.value) {
+                  return params.value
+                } else {
+                  return ''
+                }
+              }
+          },
+        },
+        {
+          data: MC3_data.standbyCount,
+          type: 'bar',
+          color: greenStr,
+          barWidth: '20',
+          stack: '总量',
+          label: {
+              show: true,
+              position: 'insideTop',
+              formatter: function (params) {
+                if (params.value) {
+                  return params.value
+                } else {
+                  return ''
+                }
+              }
+          },
+        }
+      ]
+    })
+
+    $('#chartMC2 .allCount').text(MC2.allCount)
+    $('#chartMC2 .bootCount').text(MC2.bootCount)
+    $('#chartMC2 .standbyCount').text(MC2.standbyCount)
+    $('#chartMC2 .offlineCount').text(MC2.offlineCount)
+
+    $('#chartMC4 .allCount').text(MC4.allCount)
+    $('#chartMC4 .bootCount').text(MC4.bootCount)
+    $('#chartMC4 .standbyCount').text(MC4.standbyCount)
+    $('#chartMC4 .offlineCount').text(MC4.offlineCount)
+
+
+    var MD1 = data.queryHourWorkingCountVos
+    var MD1_data = MD1.map(item => item.count)
+    var MD1_xData = MD1.map(item => item.hour)
+    chartMD1.setOption({
+      xAxis: {
+        type: 'category',
+        data: MD1_xData,
+        // boundaryGap: false,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+      },
+      yAxis: {
+        type: 'value',
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        interval: 200,
+        // axisLabel: {
+        //   interval: 800,
+        //   formatter: '{value} kg'
+        // }
+      },
+      series: [
+        {
+          type: 'line',
+          data: MD1_data,
+          itemStyle: {
+            normal: {
+              lineStyle: {
+                color: '#0098e4'
+              }
+            }
+          }
+        }
+      ],
+      grid: {
+        x:50,  //左留白
+        y:24,   //上留白
+        x2:40,  //右留白
+        y2:24   //下留白
+      }
+    });
+
+    var RA1 = data.mechanismOverviewResps
+    var RA3 = data.mechanismCityResps
+    var RA1_data = RA1.map(item => ({
+      name: item.name,
+      value: item.count
+    }))
+    var MR2_data = RA1.map(item => item.count)
+    var MR2_xData = RA1.map(item => item.name)
+    var RA3_data = RA3.map(item => item.count)
+    var RA3_xData = RA3.map(item => item.name)
+    chartRA1.setOption({
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+      },
+      series: [
+        {
+          name: '机构比',
+          type: 'pie',
+          radius: '70%',
+          avoidLabelOverlap: false,
+          label: {
+            fontSize: 10,
+            color: '#235894',
+            position: 'inner'
+          },
+          labelLine: {
+            lineStyle: {
+                color: '#235894'
+            }
+          },
+          data: RA1_data,
+          itemStyle: {
+            color: function(params) { 
+              var colorList = [ redStr, yellowStr, greenStr, blueStr ]; 
+              return colorList[params.dataIndex] 
+            }
+          }
+        }
+      ]
+    })
+    chartRA2.setOption({
+      xAxis: {
+        type: 'category',
+        data: MR2_xData,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          inside: false,
+          interval: 0
+        } 
+      },
+      yAxis: {
+        type: 'value',
+        interval: 20,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+      },
+      grid: {
+        x:40,  //左留白
+        y:10,   //上留白
+        x2:10,  //右留白
+        y2:40   //下留白
+      },
+      series: [{
+          data: MR2_data,
+          type: 'bar',
+          color: '#f6c142',
+          barWidth: '20',
+          itemStyle: {
+            normal: {
+              label: {
+                show: true, //开启显示
+                position: 'top',
+              }
+            }
+          }
+      }]
+    })
+    chartRA3.setOption({
+      xAxis: {
+        type: 'category',
+        data: RA3_xData,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          inside: false,
+          interval: 0
+        } 
+      },
+      yAxis: {
+        type: 'value',
+        show: false
+      },
+      series: [{
+        name: '山东省各市区在线监督医院数量分布',
+        data: RA3_data,
+        type: 'bar',
+        color: yellowStr,
+        barWidth: '20',
+        itemStyle: {
+          normal: {
+            label: {
+              show: true, //开启显示
+              position: 'top',
+            }
+          }
+        }
+      }],
+      grid: {
+        x:24,  //左留白
+        y:20,   //上留白
+        x2:20,  //右留白
+        y2:30   //下留白
+      }
+    })
+
+    var RC1 = data.equipmentEfficiencyResp.research
+    var RC1_data = RC1.map(item => item.efficiency)
+    var RC1_xData = RC1.map(item => item.name)
+    var RC2 = data.equipmentEfficiencyResp.bootRate
+    var RC2_data = RC2.map(item => item.efficiency)
+    var RC2_xData = RC2.map(item => item.name)
+    var RC3 = data.equipmentEfficiencyResp.machineUtilization
+    var RC3_data = RC3.map(item => item.efficiency)
+    var RC3_xData = RC3.map(item => item.name)
+    var RC4 = data.equipmentEfficiencyResp.workloadRate
+    var RC4_data = RC4.map(item => item.efficiency)
+    var RC4_xData = RC4.map(item => item.name)
+    var RC5 = data.equipmentEfficiencyResp.intactRate * 100
+
+
+    chartRC1.setOption({
+      xAxis: {
+        type: 'category',
+        data: RC1_xData,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          inside: false,
+          interval: 0,
+          // rotate: 90
+        } 
+        // axisLine:{show:false},
+        // splitLine: {show: false}
+      },
+      yAxis: {
+        type: 'value',
+        splitLine: {
+          // show:false
+        },
+        interval: 20,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+      },
+      series: [{
+          data: RC1_data,
+          type: 'bar',
+          // color: function(params) { 
+          //   var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
+          //   return colorList[params.dataIndex] 
+          // },
+          color: '#c75658',
+          barWidth: '10',
+          itemStyle: {
+            normal: {
+              label: {
+                show: true, //开启显示
+                position: 'top',
+              }
+            }
+          }
+      }],
+      grid: {
+        x:40,  //左留白
+        y:10,   //上留白
+        x2:20,  //右留白
+        y2:25   //下留白
+      }
+    })
+    chartRC2.setOption({
+      xAxis: {
+        type: 'category',
+        data: RC2_xData,
+        // boundaryGap: false,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+      },
+      yAxis: {
+        type: 'value',
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        interval: 20,
+        // axisLabel: {
+        //   interval: 800,
+        //   formatter: '{value} kg'
+        // }
+      },
+      series: [
+        {
+          name: '',
+          type: 'line',
+          data: RC2_data,
+          itemStyle: {
+            normal: {
+              lineStyle: {
+                color: '#f6c142'
+              }
+            }
+          }
+        },
+        {
+          name: '',
+          type: 'line',
+          data: [80,19,40,61,14,42,20],
+          itemStyle: {
+            normal: {
+              lineStyle: {
+                color: '#4dadb2'
+              }
+            }
+          }
+        },
+        {
+          name: '',
+          type: 'line',
+          data: [50,90,60,10,100,40,30],
+          itemStyle: {
+            normal: {
+              lineStyle: {
+                color: '#4a9ed9'
+              }
+            }
+          }
+        },
+        {
+          name: '',
+          type: 'line',
+          data: [30,20,90,60,30,60,40],
+          itemStyle: {
+            normal: {
+              lineStyle: {
+                color: '#c75658'
+              }
+            }
+          }
+        }
+      ],
+      grid: {
+        x:30,  //左留白
+        y:10,   //上留白
+        x2:10,  //右留白
+        y2:25   //下留白
+      }
+    })
+    chartRC3.setOption({
+      xAxis: {
+        type: 'category',
+        data: RC3_xData,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          inside: false,
+          interval: 0,
+          // rotate: 90
+        } 
+        // axisLine:{show:false},
+        // splitLine: {show: false}
+      },
+      yAxis: {
+        type: 'value',
+        splitLine: {
+          // show:false
+        },
+        interval: 20,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+      },
+      series: [{
+          data: RC3_data,
+          type: 'bar',
+          // color: '#c75658',
+          barWidth: '20',
+          itemStyle: {
+            normal: {
+              label: {
+                show: true, //开启显示
+                position: 'top',
+              },
+              color: function(params) { 
+                var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
+                return colorList[params.dataIndex] 
+              }
+            }
+          }
+      }],
+      grid: {
+        x:40,  //左留白
+        y:20,   //上留白
+        x2:20,  //右留白
+        y2:25   //下留白
+      }
+    })
+    chartRC4.setOption({
+      xAxis: {
+        type: 'category',
+        data: RC4_xData,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          inside: false,
+          interval: 0,
+          // rotate: 90
+        } 
+        // axisLine:{show:false},
+        // splitLine: {show: false}
+      },
+      yAxis: {
+        type: 'value',
+        splitLine: {
+          // show:false
+        },
+        interval: 20,
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+      },
+      series: [{
+          data: RC4_data,
+          type: 'bar',
+          // color: '#c75658',
+          barWidth: '20',
+          itemStyle: {
+            normal: {
+              label: {
+                show: true, //开启显示
+                position: 'top',
+              },
+              color: function(params) { 
+                var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
+                return colorList[params.dataIndex] 
+              }
+            }
+          }
+      }],
+      grid: {
+        x:40,  //左留白
+        y:20,   //上留白
+        x2:20,  //右留白
+        y2:25   //下留白
+      }
+    })
+    chartRC5.setOption({
+      series: [
+        {
+            name: '完好率',
+            type: 'gauge',
+            splitNumber: 10,
+            radius: '75%',
+            title: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                width: 5
+              }
+            },
+            splitLine: {
+              length: 5
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            },
+            pointer: {
+              width: 4
+            },
+            detail: {
+              formatter: '{value}%',
+              color: yellowStr
+            },
+            data: [{value: RC5, name: '完成率'}]
+        }
+      ]
+    })
+    chartRC6.setOption({
+      xAxis: {
+        type: 'category',
+        data: ['CT1', 'CT2', 'CT3'],
+        axisLine:{
+          show:true,
+          lineStyle: {
+            color: '#fff',
+            type: 'solid'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          inside: false,
+          interval: 0,
+          // rotate: 90
+        } 
+        // axisLine:{show:false},
+        // splitLine: {show: false}
+    },
+    yAxis: {
+      type: 'value',
+      splitLine: {
+        // show:false
+      },
+      interval: 5,
+      axisLine:{
+        show:true,
+        lineStyle: {
+          color: '#fff',
+          type: 'solid'
+        }
+      },
+      axisTick: {
+        show: false
+      },
+    },
+    series: [{
+        data: [9, 14, 15],
+        type: 'bar',
+        // color: function(params) { 
+        //   var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
+        //   return colorList[params.dataIndex] 
+        // },
+        color: '#c75658',
+        barWidth: '20',
+        itemStyle: {
+          normal: {
+            label: {
+              show: true, //开启显示
+              position: 'top',
+            }
+          }
+        }
+    }],
+    grid: {
+      x:40,  //左留白
+      y:20,   //上留白
+      x2:10,  //右留白
+      y2:30   //下留白
+    }
+    })
+
   })
 }
 fetchData()
@@ -696,11 +1527,6 @@ document.getElementById('fullScreen').addEventListener('click', function () {
     // initChart()
   })
 })
-
-
-
-
-
 
 
   // MID
@@ -885,754 +1711,6 @@ document.getElementById('fullScreen').addEventListener('click', function () {
     echarts.registerMap('CD', chinaJson);
     chartMap.setOption(optionMap)
   });
-
-
-
-
-  var value = 0.8, // 值，0~1之间
-  startAngle = 215, // 开始角度
-  endAngle = -35, // 结束角度
-  splitCount = 60, // 刻度数量
-  pointerAngle = (startAngle - endAngle) * (1 - value) + endAngle;
-  var chartMBOption = {
-    series: [
-      {
-        type: 'gauge',
-        radius: '90%',
-        startAngle: pointerAngle,
-        endAngle: endAngle,
-        splitNumber: 1,
-        axisLine: {
-          show: false,
-          lineStyle: {
-            width: 3,
-            opacity: 0
-          }
-        },
-        title: { show: false },
-        detail: { show: false },
-        splitLine: { show: false },
-        axisTick: {
-          length: 10,
-          splitNumber: Math.ceil((1 - value) * splitCount),
-          lineStyle: {
-            color: '#001242',
-            width: 3
-          }
-        },
-        axisLabel: { show: false },
-        pointer: { show: false },
-        itemStyle: {},
-        markPoint: {
-          animation: false,
-          silent: false,
-          data: [
-            {
-              symbol: 'image://' + document.getElementById('round1').src,
-              x: '50%',
-              y: '50%',
-              symbolSize: 280,
-              itemStyle: {
-                borderWidth: 3
-              }
-            },
-            {
-              symbol: 'circle',
-              symbolSize: 200
-            }
-          ]
-        },
-        data: [
-          {
-            value: value,
-            name: 'test gauge'
-          }
-        ]
-      },
-      {
-        type: 'gauge',
-        radius: '90%',
-        startAngle: startAngle,
-        endAngle: pointerAngle,
-        splitNumber: 1,
-        axisLine: {
-          show: false,
-          lineStyle: {
-            width: 3,
-            opacity: 0
-          }
-        },
-        title: { show: false },
-        detail: { show: false },
-        splitLine: { show: false },
-        axisTick: {
-          length: 10,
-          splitNumber: Math.ceil(value * splitCount),
-          lineStyle: {
-            color: {
-              image: document.getElementById('bg_img'),
-              repeat: 'no-repeat'
-            },
-            width: 1
-          }
-        },
-        axisLabel: { show: false },
-        pointer: { show: false },
-        itemStyle: {},
-        data: [
-          {
-            value: value,
-            name: 'test gauge'
-          }
-        ]
-      },
-      {
-        type: 'gauge',
-        radius: '95%',
-        startAngle: pointerAngle,
-        endAngle: pointerAngle,
-        splitNumber: 1,
-        axisLine: {
-          show: false,
-          lineStyle: {
-            width: 3,
-            opacity: 0
-          }
-        },
-        title: { show: false },
-        detail: { show: false },
-        splitLine: { show: false },
-        axisTick: {
-          length: 15,
-          splitNumber: 1,
-          lineStyle: {
-            color: {
-              image: document.getElementById('bg_img'),
-              repeat: 'no-repeat'
-            },
-            width: 3
-          }
-        },
-        axisLabel: { show: false },
-        pointer: { show: false },
-        itemStyle: {},
-        data: [
-          {
-            value: value,
-            name: 'test gauge'
-          }
-        ]
-      }
-    ]
-  }
-  // chartMB1.setOption(chartMBOption)
-  // chartMB1.setOption(chartMBOption)
-  // chartMB2.setOption(chartMBOption)
-  // chartMB3.setOption(chartMBOption)
-  // chartMB4.setOption(chartMBOption)
-
-  var chartMD1 = echarts.init(document.getElementById('chartMD1'));
-
-  chartMD1.setOption({
-    xAxis: {
-      type: 'category',
-      data: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
-      // boundaryGap: false,
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-    },
-    yAxis: {
-      type: 'value',
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-      interval: 200,
-      // axisLabel: {
-      //   interval: 800,
-      //   formatter: '{value} kg'
-      // }
-    },
-    series: [
-      {
-        type: 'line',
-        data: [0,100,200,330,400,900,800,300,200,100,400,200,700,100,300,900,200,300,100,400,0,200,300,100],
-        itemStyle: {
-          normal: {
-            lineStyle: {
-              color: '#0098e4'
-            }
-          }
-        }
-      }
-    ],
-    grid: {
-      x:50,  //左留白
-      y:24,   //上留白
-      x2:40,  //右留白
-      y2:24   //下留白
-    }
-  });
-
-
-  // RIGHT
-
-  var chartRA1 = echarts.init(document.getElementById('chartRA1'));
-  var chartRA2 = echarts.init(document.getElementById('chartRA2'));
-  var chartRA3 = echarts.init(document.getElementById('chartRA3'));
-  chartRA1.setOption({
-    tooltip: {
-      trigger: 'item',
-      formatter: '{a} <br/>{b}: {c} ({d}%)'
-    },
-    series: [
-      {
-        name: '机构比',
-        type: 'pie',
-        radius: '70%',
-        avoidLabelOverlap: false,
-        label: {
-          fontSize: 10,
-          color: '#235894',
-          position: 'inner'
-        },
-        labelLine: {
-          lineStyle: {
-              color: '#235894'
-          }
-        },
-        data: [
-          {value: 15, name: '一级'},
-          {value: 15, name: '二级'},
-          {value: 30, name: '三级'},
-          {value: 40, name: '其他'}
-        ],
-        itemStyle: {
-          color: function(params) { 
-            var colorList = [ '#4a9ed9','#4dadb2', '#f6c142', '#c75658' ]; 
-            return colorList[params.dataIndex] 
-          }
-        }
-      }
-    ]
-  })
-  chartRA2.setOption({
-    xAxis: {
-      type: 'category',
-      data: ['一级', '二乙', '二甲', '三乙', '三甲', '其他'],
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff',
-          type: 'solid'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-      axisLabel: {
-        inside: false,
-        interval: 0,
-        // rotate: 90
-      } 
-      // axisLine:{show:false},
-      // splitLine: {show: false}
-  },
-  yAxis: {
-    type: 'value',
-    splitLine: {
-      // show:false
-    },
-    interval: 20,
-    axisLine:{
-      show:true,
-      lineStyle: {
-        color: '#fff',
-        type: 'solid'
-      }
-    },
-    axisTick: {
-      show: false
-    },
-  },
-  series: [{
-      data: [45, 46, 43, 25, 34, 12, 55],
-      type: 'bar',
-      // color: function(params) { 
-      //   var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
-      //   return colorList[params.dataIndex] 
-      // },
-      color: '#f6c142',
-      barWidth: '20',
-      itemStyle: {
-        normal: {
-          label: {
-            show: true, //开启显示
-            position: 'top',
-          }
-        }
-      }
-  }],
-  grid: {
-    x:40,  //左留白
-    y:10,   //上留白
-    x2:10,  //右留白
-    y2:40   //下留白
-  }
-  })
-  chartRA3.setOption({
-    xAxis: {
-      type: 'category',
-      data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
-      axisLine:{
-        show: true,
-        lineStyle: {
-          color: '#fff'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-      axisLabel: {
-        inside: false,
-        interval: 0,
-        // rotate: 90
-      } 
-    },
-    yAxis: {
-      type: 'value',
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-      interval: 5,
-    },
-    series: [
-      {
-        type: 'line',
-        data: [5,3,10,13,4,2,15,16,2,19,8,20,14,20,12,4,16,19,6,9],
-        itemStyle: {
-          normal: {
-            lineStyle: {
-              color: '#f6c142'
-            }
-          }
-        }
-      }
-    ],
-    grid: {
-      x:24,  //左留白
-      y:20,   //上留白
-      x2:20,  //右留白
-      y2:30   //下留白
-    }
-  })
-
-  
-  var chartRC1 = echarts.init(document.getElementById('chartRC1'));
-  var chartRC2 = echarts.init(document.getElementById('chartRC2'));
-  var chartRC3 = echarts.init(document.getElementById('chartRC3'));
-  var chartRC4 = echarts.init(document.getElementById('chartRC4'));
-  var chartRC5 = echarts.init(document.getElementById('chartRC5'));
-  var chartRC6 = echarts.init(document.getElementById('chartRC6'));
-  chartRC1.setOption({
-    xAxis: {
-      type: 'category',
-      data: ['', '', '', '', '', ''],
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff',
-          type: 'solid'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-      axisLabel: {
-        inside: false,
-        interval: 0,
-        // rotate: 90
-      } 
-      // axisLine:{show:false},
-      // splitLine: {show: false}
-    },
-    yAxis: {
-      type: 'value',
-      splitLine: {
-        // show:false
-      },
-      interval: 20,
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff',
-          type: 'solid'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-    },
-    series: [{
-        data: [45, 46, 43, 25, 34, 12],
-        type: 'bar',
-        // color: function(params) { 
-        //   var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
-        //   return colorList[params.dataIndex] 
-        // },
-        color: '#c75658',
-        barWidth: '10',
-        itemStyle: {
-          normal: {
-            label: {
-              show: true, //开启显示
-              position: 'top',
-            }
-          }
-        }
-    }],
-    grid: {
-      x:40,  //左留白
-      y:10,   //上留白
-      x2:20,  //右留白
-      y2:10   //下留白
-    }
-  })
-  chartRC2.setOption({
-    xAxis: {
-      type: 'category',
-      data: ['', '', '', '', '', '', ''],
-      // boundaryGap: false,
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-    },
-    yAxis: {
-      type: 'value',
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-      interval: 20,
-      // axisLabel: {
-      //   interval: 800,
-      //   formatter: '{value} kg'
-      // }
-    },
-    series: [
-      {
-        name: '',
-        type: 'line',
-        data: [10,13,16,13,14,19,90],
-        itemStyle: {
-          normal: {
-            lineStyle: {
-              color: '#f6c142'
-            }
-          }
-        }
-      },
-      {
-        name: '',
-        type: 'line',
-        data: [80,19,40,61,14,42,20],
-        itemStyle: {
-          normal: {
-            lineStyle: {
-              color: '#4dadb2'
-            }
-          }
-        }
-      },
-      {
-        name: '',
-        type: 'line',
-        data: [50,90,60,10,100,40,30],
-        itemStyle: {
-          normal: {
-            lineStyle: {
-              color: '#4a9ed9'
-            }
-          }
-        }
-      },
-      {
-        name: '',
-        type: 'line',
-        data: [30,20,90,60,30,60,40],
-        itemStyle: {
-          normal: {
-            lineStyle: {
-              color: '#c75658'
-            }
-          }
-        }
-      }
-    ],
-    grid: {
-      x:30,  //左留白
-      y:10,   //上留白
-      x2:10,  //右留白
-      y2:10   //下留白
-    }
-  })
-  chartRC3.setOption({
-    xAxis: {
-      type: 'category',
-      data: ['', '', ''],
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff',
-          type: 'solid'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-      axisLabel: {
-        inside: false,
-        interval: 0,
-        // rotate: 90
-      } 
-      // axisLine:{show:false},
-      // splitLine: {show: false}
-    },
-    yAxis: {
-      type: 'value',
-      splitLine: {
-        // show:false
-      },
-      interval: 20,
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff',
-          type: 'solid'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-    },
-    series: [{
-        data: [96, 95, 98],
-        type: 'bar',
-        // color: '#c75658',
-        barWidth: '20',
-        itemStyle: {
-          normal: {
-            label: {
-              show: true, //开启显示
-              position: 'top',
-            },
-            color: function(params) { 
-              var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
-              return colorList[params.dataIndex] 
-            }
-          }
-        }
-    }],
-    grid: {
-      x:40,  //左留白
-      y:20,   //上留白
-      x2:20,  //右留白
-      y2:10   //下留白
-    }
-  })
-  chartRC4.setOption({
-    xAxis: {
-      type: 'category',
-      data: ['', '', ''],
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff',
-          type: 'solid'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-      axisLabel: {
-        inside: false,
-        interval: 0,
-        // rotate: 90
-      } 
-      // axisLine:{show:false},
-      // splitLine: {show: false}
-    },
-    yAxis: {
-      type: 'value',
-      splitLine: {
-        // show:false
-      },
-      interval: 20,
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff',
-          type: 'solid'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-    },
-    series: [{
-        data: [109, 113, 89],
-        type: 'bar',
-        // color: '#c75658',
-        barWidth: '20',
-        itemStyle: {
-          normal: {
-            label: {
-              show: true, //开启显示
-              position: 'top',
-            },
-            color: function(params) { 
-              var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
-              return colorList[params.dataIndex] 
-            }
-          }
-        }
-    }],
-    grid: {
-      x:40,  //左留白
-      y:20,   //上留白
-      x2:20,  //右留白
-      y2:10   //下留白
-    }
-  })
-
-  chartRC5.setOption({
-    series: [
-      {
-          name: '业务指标',
-          type: 'gauge',
-          splitNumber: 10,
-          radius: '75%',
-          title: {
-            show: false
-          },
-          axisLine: {
-            lineStyle: {
-              width: 5
-            }
-          },
-          splitLine: {
-            length: 5
-          },
-          axisTick: {
-            show: false
-          },
-          axisLabel: {
-            show: false
-          },
-          pointer: {
-            width: 4
-          },
-          detail: {
-            formatter: '{value}%',
-            color: yellowStr
-          },
-          data: [{value: 50, name: '完成率'}]
-      }
-    ]
-  })
-  chartRC6.setOption({
-    xAxis: {
-      type: 'category',
-      data: ['CT1', 'CT2', 'CT3'],
-      axisLine:{
-        show:true,
-        lineStyle: {
-          color: '#fff',
-          type: 'solid'
-        }
-      },
-      axisTick: {
-        show: false
-      },
-      axisLabel: {
-        inside: false,
-        interval: 0,
-        // rotate: 90
-      } 
-      // axisLine:{show:false},
-      // splitLine: {show: false}
-  },
-  yAxis: {
-    type: 'value',
-    splitLine: {
-      // show:false
-    },
-    interval: 5,
-    axisLine:{
-      show:true,
-      lineStyle: {
-        color: '#fff',
-        type: 'solid'
-      }
-    },
-    axisTick: {
-      show: false
-    },
-  },
-  series: [{
-      data: [9, 14, 15],
-      type: 'bar',
-      // color: function(params) { 
-      //   var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
-      //   return colorList[params.dataIndex] 
-      // },
-      color: '#c75658',
-      barWidth: '20',
-      itemStyle: {
-        normal: {
-          label: {
-            show: true, //开启显示
-            position: 'top',
-          }
-        }
-      }
-  }],
-  grid: {
-    x:40,  //左留白
-    y:20,   //上留白
-    x2:10,  //右留白
-    y2:30   //下留白
-  }
-  })
 // }
 // console.log(myChart)
 setTimeout(function (){
