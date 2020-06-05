@@ -404,11 +404,16 @@ html, body {
 #chartRC2,
 #chartRC3,
 #chartRC4,
-#chartRC5,
+#chartRC5,  
 #chartRC6,
 #map {
   width: 100%;
   height: calc(100% - 25px);
+}
+
+#chartB2 {
+  width: 100%;
+  height: calc(100%);
 }
 
 #chartMB1,

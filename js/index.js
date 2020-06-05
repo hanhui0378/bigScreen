@@ -418,17 +418,17 @@ function fetchData() {
         x:10,  //左留白
         y:10,   //上留白
         x2:10,  //右留白
-        y2:40   //下留白
+        y2:20   //下留白
       }
     })
   
   // L  C
-    var LC1 = data.eqOperationIndexVo.lowload
-    var LC2 = data.eqOperationIndexVo.overload
-    var LC1_data = LC1.map(item => item.count)
-    var LC1_xData = LC1.map(item => item.name)
-    var LC2_data = LC2.map(item => item.count)
-    var LC2_xData = LC2.map(item => item.name)
+    var LC1 = data.eqOperationIndexVo.overload
+    var LC2 = data.eqOperationIndexVo.lowload
+    var LC1_data = LC1.map(item => item.count).reverse()
+    var LC1_xData = LC1.map(item => item.name).reverse()
+    var LC2_data = LC2.map(item => item.count).reverse()
+    var LC2_xData = LC2.map(item => item.name).reverse()
   
     chartC1.setOption({
       xAxis: {
@@ -724,7 +724,7 @@ function fetchData() {
       },
       yAxis: {
         type: 'value',
-        interval: 20,
+        interval: 15,
         axisLine:{
           show:true,
           lineStyle: {
@@ -820,7 +820,7 @@ function fetchData() {
       },
       yAxis: {
         type: 'value',
-        interval: 20,
+        interval: 15,
         axisLine:{
           show:true,
           lineStyle: {
@@ -1165,7 +1165,7 @@ function fetchData() {
           //   var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
           //   return colorList[params.dataIndex] 
           // },
-          color: '#c75658',
+          color: blueStr,
           barWidth: '10',
           itemStyle: {
             normal: {
@@ -1218,50 +1218,11 @@ function fetchData() {
       series: [
         {
           name: '',
-          type: 'line',
+          type: 'bar',
           data: RC2_data,
-          itemStyle: {
-            normal: {
-              lineStyle: {
-                color: '#f6c142'
-              }
-            }
-          }
-        },
-        {
-          name: '',
-          type: 'line',
-          data: [80,19,40,61,14,42,20],
-          itemStyle: {
-            normal: {
-              lineStyle: {
-                color: '#4dadb2'
-              }
-            }
-          }
-        },
-        {
-          name: '',
-          type: 'line',
-          data: [50,90,60,10,100,40,30],
-          itemStyle: {
-            normal: {
-              lineStyle: {
-                color: '#4a9ed9'
-              }
-            }
-          }
-        },
-        {
-          name: '',
-          type: 'line',
-          data: [30,20,90,60,30,60,40],
-          itemStyle: {
-            normal: {
-              lineStyle: {
-                color: '#c75658'
-              }
-            }
+          label: {
+            show: true, //开启显示
+            position: 'top',
           }
         }
       ],
@@ -1314,17 +1275,13 @@ function fetchData() {
       series: [{
           data: RC3_data,
           type: 'bar',
-          // color: '#c75658',
+          color: yellowStr,
           barWidth: '20',
           itemStyle: {
             normal: {
               label: {
                 show: true, //开启显示
                 position: 'top',
-              },
-              color: function(params) { 
-                var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
-                return colorList[params.dataIndex] 
               }
             }
           }
@@ -1378,17 +1335,13 @@ function fetchData() {
       series: [{
           data: RC4_data,
           type: 'bar',
-          // color: '#c75658',
+          color: greenStr,
           barWidth: '20',
           itemStyle: {
             normal: {
               label: {
                 show: true, //开启显示
                 position: 'top',
-              },
-              color: function(params) { 
-                var colorList = [ '#4a9ed9','#4dadb2', '#f6c142' ]; 
-                return colorList[params.dataIndex] 
               }
             }
           }
@@ -1727,6 +1680,8 @@ setTimeout(function (){
     chartMB2.resize();
     chartMB3.resize();
     chartMB4.resize();
+    chartMC1.resize();
+    chartMC3.resize();
     chartMD1.resize();
     chartRA1.resize();
     chartRA2.resize();
